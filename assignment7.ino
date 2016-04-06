@@ -9,7 +9,7 @@
 Τέλος, θα συνεχίσει να κινείται ευθεία, μέχρι να διανύσει συνολικά (από την αρχή δηλαδή της λειτουργίας του) 150 εκατοστά. */
 #include <Smartcar.h>
 
-Odometer encoderLeft(180), encoderRight(180); //Βάλτε τους δικούς σας παλμούς ανά μέτρο
+Odometer encoderLeft(190), encoderRight(190); //Βάλτε τους δικούς σας παλμούς ανά μέτρο
 Gyroscope gyro(13); //Βάλτε την κατάλληλη τιμή σύμφωνα με το γυροσκόπιό σας
 Car folkracer;
 boolean state1Done = false;
