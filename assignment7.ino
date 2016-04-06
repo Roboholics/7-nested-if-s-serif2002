@@ -11,33 +11,33 @@
 
 Odometer encoderLeft(190), encoderRight(190); //Βάλτε τους δικούς σας παλμούς ανά μέτρο
 Gyroscope gyro(13); //Βάλτε την κατάλληλη τιμή σύμφωνα με το γυροσκόπιό σας
-Car folkracer;
+Car folkracer; //το ονομα του αμαξιου
 boolean state1Done = false;
 boolean state2Done = false;
 
 void setup() {
-  gyro.attach();
-  encoderLeft.attach(3); //Χρησιμοποιήστε τα σωστά pins!
-  encoderRight.attach(2);
-  encoderLeft.begin();
-  encoderRight.begin();
-  gyro.begin();
-  folkracer.begin(encoderLeft, encoderRight, gyro);
+  gyro.attach();//συνδεουμε το γυροσκοπιο
+  encoderLeft.attach(3); //συνδεουμε το αριστερο encoder
+  encoderRight.attach(2);//συνδεουμε το δεξι encoder
+  encoderLeft.begin();//ξεκιναμε το αριστερο encoder
+  encoderRight.begin();//ξεκιναμε το δεξι encoder
+  gyro.begin();//ξεκιναμε το γυροσκοπιο
+  folkracer.begin(encoderLeft, encoderRight, gyro);//λεμε στο αμαξι να ξεκινησει
   folkracer.enableCruiseControl();
-  folkracer.setSpeed(0.5);
+  folkracer.setSpeed(0.5);//το αυτοκινητακι θα πηγαινει με αυτην την ταχυτητα
 }
 
 void loop() {
-  folkracer.updateMotors();
-  unsigned long distance = encoderLeft.getDistance();
-  distance = distance + encoderRight.getDistance();
+  folkracer.updateMotors();//να ενημερωσει τα motors
+  unsigned long distance = encoderLeft.getDistance();//να παρει την αποσταση απο το αριστερο encoder
+  distance = distance + encoderRight.getDistance();//να παρει την αποσταση απο το δεξι encoder
   distance = distance / 2;
-  if (distance > 20) {
-    if (distance < 30) {
+  if (distance > 20) { //αν η αποσταση ειναι παραπανο απο 20
+    if (distance < 30) { //αν η αποσταση ειναι λιγοτερο απο 30
       if (state1Done == false) {
-        folkracer.stop();
-        folkracer.rotate(180);
-        folkracer.setSpeed(0.5);
+        folkracer.stop(); //το αυτοκινητακι θα σταματησει        
+        folkracer.rotate(180);//το αυτοκινητακι θα περισταφει 180 μοιρες δεξια
+        folkracer.setSpeed(0.5);//το αυτοκινητακι θα πηγαινει με αυτην την ταχυτητα
         state1Done = true;
       }
     }
@@ -45,12 +45,12 @@ void loop() {
   //TO-DO
   //Όταν το αυτοκινητάκι έχει διανύσει από 80 μέχρι 90 εκατοστά, τότε σταματήστε το και μετά περιστρέψτε το κατά 90 μοίρες
   //στα δεξιά. Στη συνέχεια, θέστε ταχύτητα 0.5 μέτρα το δευτερόλεπτο
-  if (distance > 80) {
-    if (distance < 90) {
+  if (distance > 80) { //αν η αποσταση ειναι μεγαλυτερη απο 80 cm
+    if (distance < 90) { //αν η αποσταση ειναι μικροτερη απο 90 cm
       if (state2Done == false) {
-        folkracer.stop();
-        folkracer.rotate(90);
-        folkracer.setSpeed(0.5);  
+        folkracer.stop();//το αυτοκινητακι θα σταματησει
+        folkracer.rotate(90);//το αυτοκινητακι θα περισταφει 90 μοιρες δεξια
+        folkracer.setSpeed(0.5);//το αυτοκινητακι θα πηγαινει με αυτην την ταχυτητα  
         state2Done = true;
       }  
     }
@@ -60,7 +60,7 @@ void loop() {
   //Όταν το αυτοκινητάκι έχει διανύσει απόσταση μεγαλύτερη των 150 εκατοστών, τότε πείτε του να σταματήσει (ή εναλλακτικά θέστε
   //ταχύτητα μηδέν)
 
-   if (distance > 150) {
-      folkracer.setSpeed(0);  
+   if (distance > 150) { //αν η αποσταση ειναι μεγαλυτερη απο 150 cm
+      folkracer.setSpeed(0);//το αυτοκινητακι θα πηγαινει με αυτην την ταχυτητα  
     }
 }  
