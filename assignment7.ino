@@ -49,7 +49,7 @@ void loop() {
     if (distance < 90) { //αν η αποσταση ειναι μικροτερη απο 90 cm
       if (state2Done == false) {
         folkracer.stop();//το αυτοκινητακι θα σταματησει
-        folkracer.rotate(100);//το αυτοκινητακι θα περισταφει 90 μοιρες δεξια
+        folkracer.rotate(90);//το αυτοκινητακι θα περισταφει 90 μοιρες δεξια
         folkracer.setSpeed(0.5);//το αυτοκινητακι θα πηγαινει με αυτην την ταχυτητα  
         state2Done = true;
       }  
